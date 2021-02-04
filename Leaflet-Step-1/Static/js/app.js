@@ -1,6 +1,6 @@
 
 
-var myMap = L.map('mapid').setView([37.7749, -122.4194], 5);
+var myMap = L.map('mapid').setView([37.7749, -122.4194], 4);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -15,12 +15,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var queryUrl="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 //Get data for the map
-d3.json(queryUrl).then(function(data){
-  console.log(data.features)
-
-   
-
-});
+// d3.json(queryUrl).then(function(data){
+//   console.log(data.features)
+// });
 
 //  GET color radius call to the query URL
 d3.json(queryUrl).then(function(data) {
@@ -83,14 +80,14 @@ function earthquakeLevel(magnitude) {
   case magnitude > 1:
     return "Anormaly";
   default:
-    return "Not felt";
+    return "Not Felt";
   }
 }
 
   // set radiuss from magnitude
     function getRadius(magnitude) {
     if (magnitude === 0) {
-      return 3;
+      return 2;
     }
 
     return magnitude * 6;
@@ -114,5 +111,40 @@ function earthquakeLevel(magnitude) {
       }
     }).addTo(myMap);
   
+    //Adding legend
+    let legend=L.control({
+      position:'bottomleft'
+    });
+
+    legend.onAdd=function(map){
+
+      //create container 
+      var div=L.DomUtil.create("div", "legend_for_levels");
+
+      div.innerHTML = "<h4>Magnitude</h4>"+
+      "<table>"+
+      "<tr><th style='background-color: #c2f9ff' heigth='15' width='15'>"+"</th><td>0-1</td>"+
+      "<tr><th style='background-color: #106e45' heigth='15' width='15'>"+"</th><td>1-2</td>"+
+      "<tr><th style='background-color: #fbf2a1' heigth='15' width='15'>"+"</th><td>2-3</td>"+
+      "<tr><th style='background-color: #ffbd58' heigth='15' width='15'>"+"</th><td>3-4</td>"+
+      "<tr><th style='background-color: #ff6600' heigth='15' width='15'>"+"</th><td>4-5</td>"+
+      "<tr><th style='background-color: #ff4200' heigth='15' width='15'>"+"</th><td>5-6</td>"+
+      "<tr><th style='background-color: #d3394c' heigth='15' width='15'>"+"</th><td>6-7</td>"+
+      "<tr><th style='background-color: #af2d46' heigth='15' width='15'>"+"</th><td>7-8</td>"+
+      "<tr><th style='background-color: #722040' heigth='15' width='15'>"+"</th><td>8-9</td>"+
+      "<tr><th style='background-color: #4e004f' heigth='15' width='15'>"+"</th><td>9+</td>"
+      
+
+        return div;
+    };
+
+  
+
+    //Add legend
+    legend.addTo(myMap);
+
+
+
+
   
   });
