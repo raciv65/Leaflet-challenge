@@ -2,3 +2,12 @@
      height: 800px;
      width: 800px;
      }
+
+body {
+        background:  no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          background-size: cover;
+          -o-background-size: cover;
+        }
+        
