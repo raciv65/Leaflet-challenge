@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earthquake Data</title>
 
+    <!-- Bootstrap core CSS -->
+  <link href="Static/css/bootstrap_style.css" rel="stylesheet">
+
+  
+
     <!-- leaflet set up -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -20,7 +25,24 @@
 
 </head>
 <body>
-    <div id="mapid"></div>
+    <!-- Page Content -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="mt-5">Earthquakes summary all week</h1>
+          <p>This page takes the data from the <a href="https://earthquake.usgs.gov/ens/">USGS site</a>. Summary information for the last week is shown in the following map.</p>
+          <p>This page used the Geojson of USGS: <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson">Geojson data</a></p>
+          <div id="mapid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+   
 </body>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="Static/js/config.js"></script>
