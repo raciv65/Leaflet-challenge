@@ -1,0 +1,1 @@
+const API_KEY="Your token of mapbox"
